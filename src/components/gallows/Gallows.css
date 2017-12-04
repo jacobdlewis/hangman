@@ -1,0 +1,10 @@
+.gallows-container {
+  display: flex;
+  justify-content: center;
+}
+
+.gallows {
+  border: 1px solid black;
+  height: 400px;
+  width: 200px;
+}
