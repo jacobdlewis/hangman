@@ -36,7 +36,7 @@ const Gallows = (props) => {
   return (
     <div className="gallows-container">
       <div className="gallows">
-        <img src={getGallowsImage(props.misses)} />
+        <img src={getGallowsImage(props.misses)} alt="gallows" />
       </div>
     </div>
   )

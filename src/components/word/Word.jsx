@@ -1,16 +1,16 @@
 import React from 'react';
+import shortid from 'shortid';
 import Letter from '../letter/Letter';
 import "./Word.css";
 
 const Word = (props) => {
   return (
     <div className="word">
-      {props.word.split('').map((letter) => {
+      {props.letters.map((letter) => {
         return (
           <Letter
-            key={letter}
+            key={shortid.generate()}
             letter={letter}
-            updateMisses={props.updateMisses}
           />
         );
       })}
