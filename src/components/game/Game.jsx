@@ -1,4 +1,5 @@
 import React from 'react';
+import './Game.css';
 import Gallows from '../gallows/Gallows';
 import Word from '../word/Word';
 import words from '../../data/words';
@@ -21,8 +22,8 @@ class Game extends React.Component {
 
   render () {
     return (
-      <div>
-        <h1>Hangman</h1>
+      <div className="game">
+        <h1 className="game-title">Hangman</h1>
         <h2>misses: {this.state.misses}</h2>
         <Gallows misses={this.state.misses.length} />
         <Word
