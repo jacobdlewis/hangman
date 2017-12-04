@@ -23,9 +23,8 @@ class Game extends React.Component {
     return (
       <div>
         <h1>Hangman</h1>
-        <h2>word: {this.word}</h2>
         <h2>misses: {this.state.misses}</h2>
-        <Gallows />
+        <Gallows misses={this.state.misses.length} />
         <Word
           updateMisses={this.updateMisses}
           word={this.word}
