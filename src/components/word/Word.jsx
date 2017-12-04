@@ -6,7 +6,13 @@ const Word = (props) => {
   return (
     <div className="word">
       {props.word.split('').map((letter) => {
-        return <Letter letter={letter} />
+        return (
+          <Letter
+            key={letter}
+            letter={letter}
+            updateMisses={props.updateMisses}
+          />
+        );
       })}
     </div>
   )
