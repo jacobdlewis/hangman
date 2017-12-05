@@ -1,0 +1,36 @@
+.guess {
+  margin-bottom: 20px;
+}
+
+.guess-button {
+  background-color: inherit;
+  border: .5px solid white;
+  box-shadow: .5px .5px .5px black;
+  color: white;
+  font-family: 'Rye', 'cursive';
+  text-shadow: .5px .5px .5px black;
+  padding: 5px 10px;
+}
+
+.guess-button:focus {
+  outline-color: lightgoldenrodyellow;
+}
+
+.guess-input {
+  background-color: inherit;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  caret-color: white;
+  font-family: 'Rye', 'cursive';
+  font-size: 28px;
+  line-height: 28px;
+  margin-bottom: 10px;
+  max-width: 20px;
+  padding: 20px 10px 5px 10px;
+  text-shadow: 1px 1px 2px black;
+}
+
+.guess-input:focus {
+  outline: none;
+}

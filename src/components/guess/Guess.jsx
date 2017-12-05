@@ -27,11 +27,17 @@ class Guess extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <input
             autoFocus="autofocus"
+            className="guess-input"
             maxLength="1"
             onChange={this.handleChange}
             value={this.state.value}
           />
-          <button type="submit">Guess</button>
+          <br />
+          <button
+            className="guess-button"
+            type="submit">
+            Guess
+          </button>
         </form>
       </div>
     );

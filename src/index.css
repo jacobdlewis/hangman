@@ -1,5 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  background-image: url("images/western_background.jpg");
+}
+
+#root {
+  height: 100%;
 }
