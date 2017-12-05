@@ -41,13 +41,17 @@ class Game extends React.Component {
   }
 
   guessIsDuplicate(guess) {
-    return this.state.misses.find((letter) => letter === guess);
+    const hits = this.state.letters.filter((letter) => letter.guessedCorrectly === true).map((letter) => letter.letter);
+    console.log('hits', hits);
+    const misses = this.state.misses;
+    return hits.find((letter) => letter === guess) || misses.find((letter) => letter === guess);
   }
 
   evaluateGuess(guess) {
     // check for duplicate guesses & blank guesses
     const guessIsBlankOrDuplicate = this.guessIsBlank(guess) || this.guessIsDuplicate(guess);
     if (guessIsBlankOrDuplicate) {
+      console.log(`${guess} is a duplicate or a blank`);
       this.setState({
         message: {
           body: `Warning - guesses can't be blank or duplicates`,
