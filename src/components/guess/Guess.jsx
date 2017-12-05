@@ -16,7 +16,8 @@ class Guess extends React.Component {
   }
 
   handleSubmit(event) {
-    this.props.evaluateGuess(this.state.value);
+    const normalizedGuess = this.state.value.toLowerCase();
+    this.props.evaluateGuess(normalizedGuess);
     this.setState({value: ''});
     event.preventDefault();
   }
