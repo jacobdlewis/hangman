@@ -24,32 +24,53 @@ class Game extends React.Component {
       misses: [],
       letters: this.letters
     };
+    this.guessIsBlank = this.guessIsBlank.bind(this);
+    this.guessIsCorrect = this.guessIsCorrect.bind(this);
+    this.guessIsDuplicate = this.guessIsDuplicate.bind(this);
     this.evaluateGuess = this.evaluateGuess.bind(this);
     this.updateMisses = this.updateMisses.bind(this);
   }
 
-  evaluateGuess(guess) {
+  guessIsBlank(guess) {
+    return guess === '';
+  }
+  
+  guessIsCorrect(guess) {
     const lettersList = this.state.letters.map((letter) => (letter.letter));
-    const guessInLettersList = lettersList.find((letter) => (letter === guess));
-    if (guessInLettersList) {
-      const updatedLetters = this.state.letters.map((letter) => {
-        if (letter.guessedCorrectly) {
-          return letter;
-        } else {
-          return {
-            letter: letter.letter,
-            guessedCorrectly: letter.letter === guess
-          }
+    return lettersList.find((letter) => (letter === guess));
+  }
+
+  guessIsDuplicate(guess) {
+    return this.state.misses.find((letter) => letter === guess);
+  }
+
+  evaluateGuess(guess) {
+    // check for duplicate guesses & blank guesses
+    const guessIsBlankOrDuplicate = this.guessIsBlank(guess) || this.guessIsDuplicate(guess);
+    if (guessIsBlankOrDuplicate) {
+      this.setState({
+        message: {
+          body: `Warning - guesses can't be blank or duplicates`,
+          type: 'warning'
         }
+      });
+    };
+    // check for correct/incorrect guesses
+    if (this.guessIsCorrect(guess) && !guessIsBlankOrDuplicate) {
+      const updatedLetters = this.state.letters.map((letter) => {
+        // don't toggle existing correct guesses
+        return letter.guessedCorrectly ? letter : { letter: letter.letter, guessedCorrectly: letter.letter === guess };
       });
       this.setState({
         message: {
-          body: `HIT - "${guess} was one of the letters!`,
+          body: `HIT - "${guess}" was one of the letters!`,
           type: 'success'
         },
         letters: updatedLetters
       });
-    } else {
+    };
+    // update misses for incorrect guesses
+    if (!this.guessIsCorrect(guess) && !guessIsBlankOrDuplicate) {
       this.updateMisses(guess);
     }
   }
