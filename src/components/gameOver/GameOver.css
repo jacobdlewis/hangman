@@ -18,5 +18,11 @@
 }
 
 .new-game-button {
-  
+  background-color: transparent;
+  border: .5px solid white;
+  box-shadow: .5px .5px .5px black;
+  color: white;
+  font-family: 'Rye', 'cursive';
+  text-shadow: .5px .5px .5px black;
+  padding: 5px 10px;
 }
