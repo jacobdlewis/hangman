@@ -1,12 +1,12 @@
 import React from 'react';
 import './Letter.css';
 
-const Letter = (props) => {
+const Letter = ({letter}) => {
   return (
     <div className="letter">
-      {props.letter}
+      { letter.guessedCorrectly ? letter.letter : '' }
     </div>
-  )
+  );
 }
 
 export default Letter;

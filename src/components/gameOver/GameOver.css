@@ -1,0 +1,28 @@
+.game-over {
+  border-radius: 5px;
+  color: white;
+  display: inline-block;
+  font-family: 'Rye', 'cursive';
+  font-size: 20px;
+  margin: 10px;
+  padding: 10px 25px;
+  text-shadow: .5px .5px .5px black;
+}
+
+.game-over-win {
+  background-color: rgba(0, 255, 0, .5);
+}
+
+.game-over-loss {
+  background-color: rgba(255, 0, 0, .5);
+}
+
+.new-game-button {
+  background-color: transparent;
+  border: .5px solid white;
+  box-shadow: .5px .5px .5px black;
+  color: white;
+  font-family: 'Rye', 'cursive';
+  text-shadow: .5px .5px .5px black;
+  padding: 5px 10px;
+}

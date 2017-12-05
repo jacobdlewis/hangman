@@ -1,0 +1,21 @@
+.message {
+  border-radius: 5px;
+  color: white;
+  display: inline-block;
+  font-family: 'Rye', 'cursive';
+  padding: 10px;
+  text-shadow: 1px 1px 2px black;
+}
+
+
+.message-error {
+  background-color: rgba(255, 0, 0, .5);
+}
+
+.message-warning {
+  background-color: rgba(255, 255, 0, .5);
+}
+
+.message-success {
+  background-color: rgba(0, 255, 0, .5);
+}

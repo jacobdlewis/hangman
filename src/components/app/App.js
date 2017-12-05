@@ -5,7 +5,7 @@ import Game from '../game/Game';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <Game />
       </div>
     );
