@@ -20,6 +20,7 @@
   background-color: inherit;
   border: none;
   border-bottom: 1px solid white;
+  box-shadow: 0 .5px black;
   color: white;
   caret-color: white;
   font-family: 'Rye', 'cursive';

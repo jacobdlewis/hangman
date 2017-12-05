@@ -4,7 +4,8 @@
 }
 
 .gallows {
-  border: 1px solid black;
-  height: 400px;
-  width: 200px;
+  border: 1px solid white;
+  box-shadow: .5px .5px black;
+  height: 250px;
+  width: 250px;
 }
