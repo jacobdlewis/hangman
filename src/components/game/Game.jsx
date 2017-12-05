@@ -1,5 +1,6 @@
 import React from 'react';
 import './Game.css';
+import GameOver from '../gameOver/GameOver';
 import Gallows from '../gallows/Gallows';
 import Guess from '../guess/Guess';
 import Message from '../message/Message';
@@ -18,6 +19,8 @@ class Game extends React.Component {
       }
     });
     this.state = {
+      gameOver: false,
+      gameWon: false,
       message: {
         body: undefined,
         type: undefined
@@ -25,11 +28,35 @@ class Game extends React.Component {
       misses: [],
       letters: this.letters
     };
+    this.checkGameWon = this.checkGameWon.bind(this);
+    this.checkGameLost = this.checkGameLost.bind(this);
     this.guessIsBlank = this.guessIsBlank.bind(this);
     this.guessIsCorrect = this.guessIsCorrect.bind(this);
     this.guessIsDuplicate = this.guessIsDuplicate.bind(this);
     this.evaluateGuess = this.evaluateGuess.bind(this);
     this.updateMisses = this.updateMisses.bind(this);
+  }
+
+  checkGameLost() {
+    const maxMisses = 6;
+    const overDueToMisses = this.state.misses.length === maxMisses;
+    if (overDueToMisses) {
+      this.setState({
+        gameOver: true
+      });
+    };
+  }
+
+  checkGameWon(updatedLetters) {
+    const lettersCount = this.state.letters.length;
+    const lettersCorrect = updatedLetters.filter((letter) => letter.guessedCorrectly === true).length;
+    const overDueToSuccess = lettersCount === lettersCorrect;
+    if (overDueToSuccess) {
+      this.setState({
+        gameOver: true,
+        gameWon: true
+      })
+    };
   }
 
   guessIsBlank(guess) {
@@ -43,7 +70,6 @@ class Game extends React.Component {
 
   guessIsDuplicate(guess) {
     const hits = this.state.letters.filter((letter) => letter.guessedCorrectly === true).map((letter) => letter.letter);
-    console.log('hits', hits);
     const misses = this.state.misses;
     return hits.find((letter) => letter === guess) || misses.find((letter) => letter === guess);
   }
@@ -52,7 +78,6 @@ class Game extends React.Component {
     // check for duplicate guesses & blank guesses
     const guessIsBlankOrDuplicate = this.guessIsBlank(guess) || this.guessIsDuplicate(guess);
     if (guessIsBlankOrDuplicate) {
-      console.log(`${guess} is a duplicate or a blank`);
       this.setState({
         message: {
           body: `Warning - guesses can't be blank or duplicates`,
@@ -72,7 +97,7 @@ class Game extends React.Component {
           type: 'success'
         },
         letters: updatedLetters
-      });
+      }, this.checkGameWon(updatedLetters));
     };
     // update misses for incorrect guesses
     if (!this.guessIsCorrect(guess) && !guessIsBlankOrDuplicate) {
@@ -83,19 +108,24 @@ class Game extends React.Component {
   updateMisses(guess) {
     this.setState({
       message: {
-        body: `MISS - "${guess}" was not a valid option!`,
+        body: `MISS - "${guess}" was not one of the options!`,
         type: 'error'
       },
       misses: this.state.misses.concat(guess)
-    })
+    }, this.checkGameLost());
   }
 
   render () {
     return (
       <div className="game">
         <h1 className="game-title">Hangman</h1>
-        <Message message={this.state.message} />
-        <Guess evaluateGuess={this.evaluateGuess} />
+        { this.state.gameOver ?
+          <GameOver gameWon={this.state.gameWon} /> :
+          <div>
+            <Message message={this.state.message} />
+            <Guess evaluateGuess={this.evaluateGuess} />
+          </div>
+        }
         <Gallows misses={this.state.misses.length} />
         <Word letters={this.state.letters} />
         <Misses misses={this.state.misses} />
