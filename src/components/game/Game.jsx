@@ -3,6 +3,7 @@ import './Game.css';
 import Gallows from '../gallows/Gallows';
 import Guess from '../guess/Guess';
 import Message from '../message/Message';
+import Misses from '../misses/Misses';
 import Word from '../word/Word';
 import words from '../../data/words';
 
@@ -97,7 +98,7 @@ class Game extends React.Component {
         <Guess evaluateGuess={this.evaluateGuess} />
         <Gallows misses={this.state.misses.length} />
         <Word letters={this.state.letters} />
-        <div>misses: {this.state.misses}</div>
+        <Misses misses={this.state.misses} />
       </div>
     );
   }
