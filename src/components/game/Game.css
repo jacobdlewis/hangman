@@ -11,6 +11,7 @@
   font-family: 'Rye', 'cursive';
   font-size: 3em;
   letter-spacing: 3px;
+  text-decoration: underline;
   text-shadow: 1px 1px 2px black;
-  margin: 0px auto;
+  margin: 0px auto 5px auto;
 }

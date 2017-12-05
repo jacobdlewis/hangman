@@ -6,7 +6,13 @@ const words = [
   'concatenate',
   'string',
   'float',
-  'git'
+  'git',
+  'whitespace',
+  'list',
+  'integer',
+  'function',
+  'stylesheet',
+  'template'
 ];
 
 export default words;
