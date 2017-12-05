@@ -41,8 +41,15 @@ class Game extends React.Component {
     const maxMisses = 6;
     const overDueToMisses = this.state.misses.length === maxMisses;
     if (overDueToMisses) {
+      // show all letters, so they see what the word was
+      const visibleLetters = this.state.letters.map((letter) => { 
+        return {
+          letter: letter.letter,
+          guessedCorrectly: true
+        }});
       this.setState({
-        gameOver: true
+        gameOver: true,
+        letters: visibleLetters
       });
     };
   }
@@ -118,7 +125,7 @@ class Game extends React.Component {
   render () {
     return (
       <div className="game">
-        <h1 className="game-title">Hangman</h1>
+        <h1 className="game-title">Programmin'<br />Hangman</h1>
         { this.state.gameOver ?
           <GameOver gameWon={this.state.gameWon} /> :
           <div>
